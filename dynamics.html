@@ -20,10 +20,10 @@
     <header class="">
         <div class="grid grid-pad">
             <div class="col-11-12">
-                <h1><i><a href="/intro">Sitar Control</a></i> <div id="logos"><a href="http://mines-paristech.fr"><img src="img/logo_mines.png"></a> <a href="http://trublion.org"><img id="logo_trublion" src="img/trublion_bandeau.png"></a></div></h1>
+                <h1><i><a href="/intro.html">Sitar Control</a></i> <div id="logos"><a href="http://mines-paristech.fr"><img src="img/logo_mines.png"></a> <a href="http://trublion.org"><img id="logo_trublion" src="img/trublion_bandeau.png"></a></div></h1>
                 <h3>A research internship at <i>Centre d'Automatique des Systèmes</i>, Mines ParisTech </h3>
                 by Jeremy Dahan, student at Mines ParisTech and member of the Trublion collective
-                <p>This website is my report for my research internship at the CAS where I built a stringed musical instrument on which timbre is controled using electromagnets. A complete description can be found <a href="/intro">here</a></p>
+                <p>This website is my report for my research internship at the CAS where I built a stringed musical instrument on which timbre is controled using electromagnets. A complete description can be found <a href="/intro.html">here</a></p>
             </div>
         </div>
     </header>
@@ -73,7 +73,7 @@
 <p>We can now calculate <span class="math inline">\(k_n\)</span> :</p>
 <p><span class="math display">\[k_n \propto &lt; f_n, d&gt; \;= \int_0^L \sin\left(\alpha_n x\right)d(x) \; \text{d}x =   \int_{x_0 - \frac{\delta x}{2}}^{x_0 + \frac{\delta x}{2}}\sin\left(\alpha_n x\right)d(x) \; \text{d}x\]</span> <span class="math display">\[k_n\propto \left( \frac{2}{\alpha_n^3}\left(\delta x\alpha_n\cos\left(\frac{\delta x \alpha_n}{2}\right) - 2 \sin\left(\frac{\delta x \alpha_n}{2}\right)\right)\sin(\alpha_n x_0)\right)\]</span></p>
 <p>But for small actuators, this result is close to the one we would get from the single point model : <span class="math inline">\(k_n \approx c&#39; \sin(\alpha_n x_0)\)</span>. We found experimentally that both predictions were far from actual amplitude data : the final amplitude values of modes tested in open loop had very different ratios than xhat the formula predicted.</p>
-<p>It is important to stress that we are interested in the dynamics of the <strong>amplitude of each mode</strong> (<span class="math inline">\(C(t)\)</span> as introduced in the <a href="/state_sensor_algorithm">state sensor algorithm page</a>), not just the state of its associated oscillator. For a Heaviside excitation at the resonant frequency, i.e. <span class="math inline">\(s(t) = u_0(t)A \sin(\omega_{0,n} t)\)</span> (where <span class="math inline">\(u_0(t&lt;0)=0\)</span> and <span class="math inline">\(u_0(t\geq0)=1\)</span>), the system behaves like a first order system (regarding the amplitude) : the final state is reached with an exponential decay profile. The time constant is <span class="math inline">\(2/\lambda\)</span>, like in the homogeneous equation. We can thus hypothesise that the system behaves like a first order system for more complex excitations, if exactly driven at its resonance frequency.</p>
+<p>It is important to stress that we are interested in the dynamics of the <strong>amplitude of each mode</strong> (<span class="math inline">\(C(t)\)</span> as introduced in the <a href="/state_sensor_algorithm.html">state sensor algorithm page</a>), not just the state of its associated oscillator. For a Heaviside excitation at the resonant frequency, i.e. <span class="math inline">\(s(t) = u_0(t)A \sin(\omega_{0,n} t)\)</span> (where <span class="math inline">\(u_0(t&lt;0)=0\)</span> and <span class="math inline">\(u_0(t\geq0)=1\)</span>), the system behaves like a first order system (regarding the amplitude) : the final state is reached with an exponential decay profile. The time constant is <span class="math inline">\(2/\lambda\)</span>, like in the homogeneous equation. We can thus hypothesise that the system behaves like a first order system for more complex excitations, if exactly driven at its resonance frequency.</p>
 <div class="figure">
 <img src="/img/img478.png" alt="Transient of a damped oscillator to a pure sine excitation at the resonant frequency, from R. Fitzpatrick website" />
 <p class="caption">Transient of a damped oscillator to a pure sine excitation at the resonant frequency, from <a href="https://farside.ph.utexas.edu/teaching/315/Waveshtml/node15.html">R. Fitzpatrick website</a></p>
@@ -123,35 +123,35 @@
         </div>
         <div class="col-4-12 columns" id="sidebar">
             <ol>
-                <li><a href="/intro">Introduction</a></li>
-                <li><a href="/landscape">Landscape of augmented instruments</a></li>
+                <li><a href="/intro.html">Introduction</a></li>
+                <li><a href="/landscape.html">Landscape of augmented instruments</a></li>
                 <li>Design choices for the instrument
                     <ol>
-                        <li><a href="/general">General geometry</a></li>
-                        <li><a href="/general_actuators">Choosing the actuator</a></li>
-                        <li><a href="/choosing_sensors">Choosing the sensor</a></li>
-                        <li><a href="/making_sitemp">Microcontroller, amplifier and woodworking</a></li>
-                        <li><a href="/summary_design">Summary of the design</a></li>
+                        <li><a href="/general.html">General geometry</a></li>
+                        <li><a href="/general_actuators.html">Choosing the actuator</a></li>
+                        <li><a href="/choosing_sensors.html">Choosing the sensor</a></li>
+                        <li><a href="/making_sitemp.html">Microcontroller, amplifier and woodworking</a></li>
+                        <li><a href="/summary_design.html">Summary of the design</a></li>
                     </ol>
                 </li>
                 <li>Engineering a magnetic scanner
                     <ol>
-                        <li><a href="/magnetic_scanner_design">Design</a></li>
-                        <li><a href="/magnetic_scanner_results">Results</a></li>
+                        <li><a href="/magnetic_scanner_design.html">Design</a></li>
+                        <li><a href="/magnetic_scanner_results.html">Results</a></li>
                     </ol>
                 </li>
                 <li>Controlling the instrument
                     <ol>
-                        <li><a href="/state_sensor_algorithm">State-sensor algorithm </a></li>
-                        <li><a href="/dynamics">Dynamics of the system</a></li>
-                        <!-- <li><a href="/open_loop_response">Open loop response</li> -->
-                        <li><a href="/control">Code architecture and first control</a></li>
-                        <li><a href="/linearising">Linearising the actuators</a></li>
+                        <li><a href="/state_sensor_algorithm.html">State-sensor algorithm </a></li>
+                        <li><a href="/dynamics.html">Dynamics of the system</a></li>
+                        <!-- <li><a href="/open_loop_response.html">Open loop response</li> -->
+                        <li><a href="/control.html">Code architecture and first control</a></li>
+                        <li><a href="/linearising.html">Linearising the actuators</a></li>
                     </ol>
                 </li>
-                <li><a href="/comparing">Discussion : Compairing with other setups</a></li>
-                <li><a href="/conclusion">Conclusion and future work</a></li>
-                <li><a href="/website">About this website</a></li>
+                <li><a href="/comparing.html">Discussion : Compairing with other setups</a></li>
+                <li><a href="/conclusion.html">Conclusion and future work</a></li>
+                <li><a href="/website.html">About this website</a></li>
             </ol>
         </div>
 
