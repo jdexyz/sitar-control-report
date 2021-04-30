@@ -1,0 +1,202 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sitar Control - A Reasearch Internship Report</title>
+    <link rel="stylesheet" href="css/pixyll.css">
+    <link href='css/simplegrid.css' rel='stylesheet' type='text/css'>
+    <link href='css/bibcite.css' rel='stylesheet' type='text/css'>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/underscore-min.js"></script>
+</head>
+
+<body>
+    <div class="top-bar">
+
+    </div>
+    <header class="">
+        <div class="grid grid-pad">
+            <div class="col-11-12">
+                <h1><i><a href="/intro">Sitar Control</a></i> <div id="logos"><a href="http://mines-paristech.fr"><img src="img/logo_mines.png"></a> <a href="http://trublion.org"><img id="logo_trublion" src="img/trublion_bandeau.png"></a></div></h1>
+                <h3>A research internship at <i>Centre d'Automatique des Systèmes</i>, Mines ParisTech </h3>
+                by Jeremy Dahan, student at Mines ParisTech and member of the Trublion collective
+                <p>This website is my report for my research internship at the CAS where I built a stringed musical instrument on which timbre is controled using electromagnets. A complete description can be found <a href="/intro">here</a></p>
+            </div>
+        </div>
+    </header>
+
+    <br><br>
+    <div class="grid grid-pad" id="mainContainer">
+
+
+
+        <div class="col-8-12 columns">
+            <div class="blog-post">
+<h1 id="the-dynamics-of-the-system">The dynamics of the system</h1>
+<h2 id="summary">Summary</h2>
+<p>We started using a simple model, the damped string model. It exhibits an important property of the system : the relaxation and max stimulation frequencies are different, making the tuning of the system more complex.</p>
+<p>The model predicts a first order response on the amplitude of each mode, when the drive frequency is <em>exactly</em> the resonant frequency, and predicts beatings when the difference is small. Experimental open loop data indeed shows strong beatings, but their dynamics are complex.</p>
+<p><em>This simple model, which parameters seem too dependent on the environmental conditions of the instrument, was not used in the experimental control, and we did not manage to get a clear differential equation describing the system as defined.</em></p>
+<h2 id="calculations">Calculations</h2>
+<h3 id="the-homogeneous-equation">The homogeneous equation</h3>
+<p>We started with a very simple model of this instrument : the damped string, in one dimension.</p>
+<p>Let <span class="math inline">\(u(x,t)\)</span> be the height of the string above its resting position at position <span class="math inline">\(x\)</span> and time <span class="math inline">\(t\)</span>. We can write the damped string equation <span class="math display">\[u_{tt} - c^2 u_{xx} + \lambda u_t = 0 \quad(1)\]</span>. with boundary conditions <span class="math inline">\(u(0) = u(L) = 0\)</span>. Supposing <span class="math inline">\(u\)</span> is harmonic and can be written as <span class="math inline">\(u(x,t) = f(x) \, g(t)\)</span>, we find <span class="math inline">\(f&#39;&#39;(x) = k \,f(x)\)</span> and <span class="math inline">\(g&#39;&#39;(t) + \lambda g&#39;(t) = c^2 k g(t)\)</span>. The asymptotic stability imposes <span class="math inline">\(k&lt;0\)</span>, hence <span class="math inline">\(k = - \alpha^2\)</span></p>
+<p>The boundary conditions impose <span class="math inline">\(f(0)=f(L)=0\)</span>, hence <span class="math inline">\(f(x) = A \sin(\alpha_n x)\)</span>, with <span class="math inline">\(\alpha_n L = n \pi\)</span>. e.g. <span class="math inline">\(\alpha_n = \frac{n\pi}{L}\)</span>. The solutions of <span class="math inline">\(g&#39;&#39;(t) + \lambda g&#39;(t) + c^2\alpha_n^2 g(t) = 0\)</span> are <span class="math inline">\(t\mapsto B\exp(\beta t)\)</span> with <span class="math inline">\(\beta\in\mathbb{C}\)</span> and <span class="math inline">\(B\in\mathbb{R}\)</span>. Re-injecting in the previous equation, we find <span class="math inline">\(\beta^2 \exp(\beta t) + \lambda \beta \exp(\beta t) + c^2 \alpha_n^2 \exp(\beta t) = 0\)</span> hence <span class="math inline">\(\beta^2 + \lambda\beta + c^2\alpha_n^2 = 0\)</span>. The real system oscillates with little friction, so we can assume that <span class="math inline">\(\lambda - 4c^2\alpha_n^2&lt;0\)</span>.</p>
+<p>Hence <span class="math display">\[\beta = \frac{-\lambda\pm j\sqrt{4c^2\alpha_n^2 - \lambda^2}}{2}=\frac{-\lambda}{2} \pm j\sqrt{c^2\alpha_n^2 - \left(\frac{\lambda}{2}\right)^2}\]</span></p>
+<p>Let <span class="math inline">\(\omega_{0,n} = \frac{c \,n\,\pi}{L}\)</span>, thus <span class="math display">\[\beta  = \frac{-\lambda}{2} \pm j \omega_{0,n}\sqrt{1 - \left(\frac{\lambda L}{2cn\pi}\right)^2}\]</span> .</p>
+<p>We will also call <span class="math display">\[\omega_{u,n} = \omega_{0,n}\sqrt{1 - \left(\frac{\lambda L}{2cn\pi}\right)^2}\]</span> the pseudo-frequency of undriven oscillations.</p>
+<p>Now solving the general solution, we had <span class="math inline">\(f_n(x) = A \sin(\alpha_n x)\)</span>. We suppose <span class="math inline">\(A = \frac{L}{\sqrt{2}}\)</span> (since constants can be adjusted to boundary conditions later). Since <span class="math inline">\((f_n)_{n\in\mathbb{N^*}}\)</span> is an orthonormal basis of the Hilbert space <span class="math inline">\(L^2(]0,L[)\)</span>, we can write <span class="math display">\[u = \sum_{n\in\mathbb{N^*}} g_n(t) f_n(x) = \sum_{n\in\mathbb{N^*}} g_n(t) \sin\left(\frac{n\pi}{L}x\right)\]</span>.</p>
+<p>The linearity of the wave equation and the orthogonality of the <span class="math inline">\((f_n)_{n\in\mathbb{N^*}}\)</span> gives <span class="math inline">\(g_n&#39;&#39;(t) + \lambda g_n&#39;(t) + c^2\alpha_n^2 g_n(t) = 0\)</span> and so <span class="math inline">\(g_n = B_n \exp(-\frac{\lambda}{2}) \sin(\omega_{l,n}t + \phi_n)\)</span>.</p>
+<p>Hence the general form of the homogeneous equation :</p>
+<p><span class="math display">\[u = \sum_{n\in\mathbb{N^*}} B_n \exp\left(-\frac{\lambda t}{2}\right) \sin(\omega_{l,n}t + \phi_n)\sin\left(\frac{n\pi}{L}x\right)\]</span></p>
+<h3 id="adding-the-actuator">Adding the actuator</h3>
+<p>Let us now consider the non-homogeneous damped string equation :</p>
+<p><span class="math display">\[u_{tt} - c^2 u_{xx} + \lambda u_t = h(x,t) \quad(2)\]</span>.</p>
+<p>where <span class="math inline">\(h : ]0,L[\times \mathbb{R}^+ \to \mathbb{R}\)</span> is a smooth function that can be written as <span class="math inline">\(h(x,t) = d(x)s(t)\)</span> (the actuator does not move).</p>
+<p>Projecting <span class="math inline">\(h\)</span> on the <span class="math inline">\((f_n)_{n\in\mathbb{N^*}}\)</span> basis gives <span class="math display">\[h(x, t) =  \sum_{n\in\mathbb{N^*}} s(t) \,k_n\sin\left(\frac{n\pi}{L}x\right)\]</span>, where <span class="math inline">\(k_n \propto &lt;f_n,d&gt;\)</span>.</p>
+<p>The <span class="math inline">\(c_n\)</span> scalars represent the spatial distribution of the force, while <span class="math inline">\(s(t)\)</span> represents its time dependent variations.</p>
+<p>Equation <span class="math inline">\((2)\)</span> yields <span class="math display">\[\sum_{n\in\mathbb{N^*}} \left(g_n&#39;&#39;(t) + \lambda g_n&#39;(t) + c^2\alpha_n^2 g_n(t) \right) \sin\left(\alpha_nx\right) =  \sum_{n\in\mathbb{N^*}} s(t)\,k_n \sin\left(\alpha_nx\right)\]</span>.</p>
+<p>Hence <span class="math inline">\(g_n&#39;&#39;(t) + \lambda g_n&#39;(t) + c^2\alpha_n^2 g_n(t) = k_n \, s(t)\)</span>, since the <span class="math inline">\((f_n)_{n \in \mathbb{N*}}\)</span> are orthogonal.</p>
+<p>In complex notation, we get</p>
+<p><span class="math inline">\((j\omega)^2\underline{g} + j\omega\lambda\underline{g} + \omega_{0,n}^2\underline{g} = k_n \underline{s}\)</span> hence <span class="math display">\[\underline{g} = \underline{s}\frac{k_n}{\omega_{0,n}^2-\omega^2 + j\omega\lambda}\]</span></p>
+<p>This is the typical behaviour of a second order low pass filter with a resonant frequency <span class="math inline">\(\omega = \omega_{0,n}\)</span>.</p>
+<p>The simulations of cylindrical permanent magnets and the magnetic scans are consistent with a simplification of the force of the type :</p>
+<p><span class="math display">\[d(x) =  \bigg( \begin{matrix}  0 \text{ if } x \notin [x_0 -\frac{\delta x}{2},x_0 +\frac{\delta x}{2}] \\ \frac{d_{max}}{(\frac{\delta x}{2})^2}(x-(x_0 -\frac{\delta x}{2}))(x - (x_0 +\frac{\delta x}{2})) \text{ otherwise}\end{matrix}\]</span>.</p>
+<div class="figure">
+<img src="/img/force_aimant.svg" alt="Proposed simplification of the profile of the force exerted by the electromagnet" />
+<p class="caption">Proposed simplification of the profile of the force exerted by the electromagnet</p>
+</div>
+<p>This definition is that of a parabola centered around <span class="math inline">\(x_0\)</span>, with a max height of <span class="math inline">\(d_{max}\)</span> and a distance between its roots of <span class="math inline">\(\delta x\)</span>. The function is zero outside of <span class="math inline">\([x_0 -\frac{\delta x}{2},x_0 +\frac{\delta x}{2}]\)</span>, hence out of the bell region.</p>
+<p>We can now calculate <span class="math inline">\(k_n\)</span> :</p>
+<p><span class="math display">\[k_n \propto &lt; f_n, d&gt; \;= \int_0^L \sin\left(\alpha_n x\right)d(x) \; \text{d}x =   \int_{x_0 - \frac{\delta x}{2}}^{x_0 + \frac{\delta x}{2}}\sin\left(\alpha_n x\right)d(x) \; \text{d}x\]</span> <span class="math display">\[k_n\propto \left( \frac{2}{\alpha_n^3}\left(\delta x\alpha_n\cos\left(\frac{\delta x \alpha_n}{2}\right) - 2 \sin\left(\frac{\delta x \alpha_n}{2}\right)\right)\sin(\alpha_n x_0)\right)\]</span></p>
+<p>But for small actuators, this result is close to the one we would get from the single point model : <span class="math inline">\(k_n \approx c&#39; \sin(\alpha_n x_0)\)</span>. We found experimentally that both predictions were far from actual amplitude data : the final amplitude values of modes tested in open loop had very different ratios than xhat the formula predicted.</p>
+<p>It is important to stress that we are interested in the dynamics of the <strong>amplitude of each mode</strong> (<span class="math inline">\(C(t)\)</span> as introduced in the <a href="/state_sensor_algorithm">state sensor algorithm page</a>), not just the state of its associated oscillator. For a Heaviside excitation at the resonant frequency, i.e. <span class="math inline">\(s(t) = u_0(t)A \sin(\omega_{0,n} t)\)</span> (where <span class="math inline">\(u_0(t&lt;0)=0\)</span> and <span class="math inline">\(u_0(t\geq0)=1\)</span>), the system behaves like a first order system (regarding the amplitude) : the final state is reached with an exponential decay profile. The time constant is <span class="math inline">\(2/\lambda\)</span>, like in the homogeneous equation. We can thus hypothesise that the system behaves like a first order system for more complex excitations, if exactly driven at its resonance frequency.</p>
+<div class="figure">
+<img src="/img/img478.png" alt="Transient of a damped oscillator to a pure sine excitation at the resonant frequency, from R. Fitzpatrick website" />
+<p class="caption">Transient of a damped oscillator to a pure sine excitation at the resonant frequency, from <a href="https://farside.ph.utexas.edu/teaching/315/Waveshtml/node15.html">R. Fitzpatrick website</a></p>
+</div>
+<p>Except in the simple case of the undamped string, we were unable to analytically compute a simple expression for the amplitude of the transient response when the frequency is not exactly <span class="math inline">\(\omega_{0,n}\)</span> (even with the help of <em>Mathematica</em>). We also had trouble finding literature on the subject (and would welcome any documentation sent to us).</p>
+<p>We expected beatings similar to a second order response, but we came to the conclusion that we needed experimental data to continue.</p>
+<div class="figure">
+<img src="/img/img500.png" alt="Transient of a damped oscillator to a pure sine excitation off the resonant frequency, from R. Fitzpatrick website" />
+<p class="caption">Transient of a damped oscillator to a pure sine excitation off the resonant frequency, from <a href="https://farside.ph.utexas.edu/teaching/315/Waveshtml/node15.html">R. Fitzpatrick website</a></p>
+</div>
+<h3 id="testing-the-simple-model">Testing the simple model</h3>
+<p>We collected a set of data representing the system response to different step inputs.</p>
+<p>We used the Bela to inject a signal of the type :</p>
+<p><span class="math display">\[s(t) = r(t)\left(\sum_{i=1}^5 a_i\sin(w_i (t-1))\right)\]</span> where <span class="math inline">\(t\mapsto r(t)\)</span> is a ramp signal defined as</p>
+<p><span class="math inline">\(r(t) = \Bigg( \begin{matrix} 0 \text{ if } t&lt;1 \\ (t-1)/D \text{ if } 1\leq t \leq 1+\epsilon \\ 1 \text{ if } t&gt;1+\epsilon \end{matrix}\)</span> And phases were chosen so as to limit the high frequency click at <span class="math inline">\(t=1\)</span>.</p>
+<p>The <span class="math inline">\(a_i\)</span> amplitudes were chosen to study both single frequency response and multimodes excitation.</p>
+<p>The actuator was placed at 120mm from the sensor (the string has a length of 700mm).</p>
+<p>The below figure shows the system response to a <code>0.5</code> step input for mode 1.</p>
+<div class="figure">
+<img src="/img/mode1_0.5.png" alt="Open loop response for a 0.5 step input for mode 1" />
+<p class="caption">Open loop response for a 0.5 step input for mode 1</p>
+</div>
+<p>The decay of the beatings has an exponential profile, but the beginning of the transient is difficult to analyse. The same observation can be made on the open loop response to a mode 2 step (though the decay is too slow to be exponential):</p>
+<div class="figure">
+<img src="/img/open_loop_0.5_mode2.png" alt="Open loop response for a 0.5 step input for mode 2" />
+<p class="caption">Open loop response for a 0.5 step input for mode 2</p>
+</div>
+<p>However, the beatings become more complex for mode 3 onward : <em>the beatings start to have a beating oscillation</em>.</p>
+<div class="figure">
+<img src="/img/mode3_open_loop.png" alt="Open loop response for a 0.5 step input for mode 3" />
+<p class="caption">Open loop response for a 0.5 step input for mode 3</p>
+</div>
+<p>The modes are also more coupled than anticipated, and the beatings change accordingly. We tried to use the system identification toolbox in Matlab to get a numerical model that could explain these responses, but even with high order models, we could not get better than a 70% fit, and most often the begining of the transient was fairly off.</p>
+<p>In front of these difficulties to get a reliable model, we resorted to first control the system with a model-less controller like a PID, before resuming the model construction with better knowledge of the system behaviour.</p>
+<h3 id="the-issue-of-tuning-the-string">The issue of tuning the string</h3>
+<p>Tuning the string to an exact frequency is a difficult process : as seen previously, the free oscillation frequency differs from the resonance frequency, and this relationship depends on the damping of the system. The string being attached to other mechanical parts (the piezo bridge, the nut and the tuning mechanism, and the wood itself), the damping is a function of the entire instrument geometry. Furthermore, the surface on which the instrument is played also dissipates energy, as it radiates sound.</p>
+<p>To mitigate the surface dependancy, we layed the instrument on thick foam legs, dramatically reducing the transmitted vibration.</p>
+<p>We used stroboscopy to tune the string : we injected a pure sine at a fixed frequency into the actuator, and then used an LED array driven at the same frequency to see the actual movement of the string.</p>
+<p>We also reduced the illumination time to a tenth of the period the fundamental : this reduced motion blur and allowed finer tuning.</p>
+<p>We were constantly confronted with a kind of hysterisis : the string would start its vibration when driven at a frequency close to <span class="math inline">\(f_0\)</span>, but would still vibrate, sometimes with a higher amplitude, when driven at a frequency further off from <span class="math inline">\(f_0\)</span>.</p>
+<p>Our method for tuning was to regularly stop the string and wait for the amplitude to settle, while checking the frequency with the strobe.</p>
+
+<div class="bibliography"></div>
+
+
+            </div>
+        </div>
+        <div class="col-4-12 columns" id="sidebar">
+            <ol>
+                <li><a href="/intro">Introduction</a></li>
+                <li><a href="/landscape">Landscape of augmented instruments</a></li>
+                <li>Design choices for the instrument
+                    <ol>
+                        <li><a href="/general">General geometry</a></li>
+                        <li><a href="/general_actuators">Choosing the actuator</a></li>
+                        <li><a href="/choosing_sensors">Choosing the sensor</a></li>
+                        <li><a href="/making_sitemp">Microcontroller, amplifier and woodworking</a></li>
+                        <li><a href="/summary_design">Summary of the design</a></li>
+                    </ol>
+                </li>
+                <li>Engineering a magnetic scanner
+                    <ol>
+                        <li><a href="/magnetic_scanner_design">Design</a></li>
+                        <li><a href="/magnetic_scanner_results">Results</a></li>
+                    </ol>
+                </li>
+                <li>Controlling the instrument
+                    <ol>
+                        <li><a href="/state_sensor_algorithm">State-sensor algorithm </a></li>
+                        <li><a href="/dynamics">Dynamics of the system</a></li>
+                        <!-- <li><a href="/open_loop_response">Open loop response</li> -->
+                        <li><a href="/control">Code architecture and first control</a></li>
+                        <li><a href="/linearising">Linearising the actuators</a></li>
+                    </ol>
+                </li>
+                <li><a href="/comparing">Discussion : Compairing with other setups</a></li>
+                <li><a href="/conclusion">Conclusion and future work</a></li>
+                <li><a href="/website">About this website</a></li>
+            </ol>
+        </div>
+
+    </div>
+<!--     <div class="row column">
+        <ul class="pagination" role="navigation" aria-label="Pagination">
+            <li class="disabled">Previous</li>
+            <li class="current"><span class="show-for-sr">You're on page</span> 1</li>
+            <li><a href="#" aria-label="Page 2">2</a></li>
+            <li><a href="#" aria-label="Page 3">3</a></li>
+            <li><a href="#" aria-label="Page 4">4</a></li>
+            <li class="ellipsis"></li>
+            <li><a href="#" aria-label="Page 12">12</a></li>
+            <li><a href="#" aria-label="Page 13">13</a></li>
+            <li><a href="#" aria-label="Next page">Next</a></li>
+        </ul>
+    </div> -->
+
+
+<script>
+$("#sidebar").clone().prependTo("#mainContainer").attr("id", "sidebarPhone");
+
+
+$("pre").each(function(){
+    var classes = $(this).attr("class").split(" ");
+    for(var i=0; i<classes.length; i++){
+        $(this).children("code").addClass("language-" + classes[i]);
+    }
+    $(this).addClass("line-numbers");
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<link rel="stylesheet" href="css/prism.css">
+<script src="js/prism.js"></script>
+
+
+
+<script src="js/bibcite.js"></script>
+<script>
+    B = new BibCite('public/bibliography.bib', { })
+    B.replace();
+    B.references('.bibliography')
+</script>
+</body>
+</html>

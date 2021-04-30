@@ -1,0 +1,126 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sitar Control - A Reasearch Internship Report</title>
+    <link rel="stylesheet" href="css/pixyll.css">
+    <link href='css/simplegrid.css' rel='stylesheet' type='text/css'>
+    <link href='css/bibcite.css' rel='stylesheet' type='text/css'>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/underscore-min.js"></script>
+</head>
+
+<body>
+    <div class="top-bar">
+
+    </div>
+    <header class="">
+        <div class="grid grid-pad">
+            <div class="col-11-12">
+                <h1><i><a href="/intro">Sitar Control</a></i> <div id="logos"><a href="http://mines-paristech.fr"><img src="img/logo_mines.png"></a> <a href="http://trublion.org"><img id="logo_trublion" src="img/trublion_bandeau.png"></a></div></h1>
+                <h3>A research internship at <i>Centre d'Automatique des Systèmes</i>, Mines ParisTech </h3>
+                by Jeremy Dahan, student at Mines ParisTech and member of the Trublion collective
+                <p>This website is my report for my research internship at the CAS where I built a stringed musical instrument on which timbre is controled using electromagnets. A complete description can be found <a href="/intro">here</a></p>
+            </div>
+        </div>
+    </header>
+
+    <br><br>
+    <div class="grid grid-pad" id="mainContainer">
+
+
+
+        <div class="col-8-12 columns">
+            <div class="blog-post">
+<h1 id="future-work">Future work</h1>
+<h2 id="a-more-decent-design">A more decent design</h2>
+<p>Plans autocad ?</p>
+<h2 id="magcapo">Magcapo</h2>
+
+<div class="bibliography"></div>
+
+
+            </div>
+        </div>
+        <div class="col-4-12 columns" id="sidebar">
+            <ol>
+                <li><a href="/intro">Introduction</a></li>
+                <li><a href="/landscape">Landscape of augmented instruments</a></li>
+                <li>Design choices for the instrument
+                    <ol>
+                        <li><a href="/general">General geometry</a></li>
+                        <li><a href="/general_actuators">Choosing the actuator</a></li>
+                        <li><a href="/choosing_sensors">Choosing the sensor</a></li>
+                        <li><a href="/making_sitemp">Microcontroller, amplifier and woodworking</a></li>
+                        <li><a href="/summary_design">Summary of the design</a></li>
+                    </ol>
+                </li>
+                <li>Engineering a magnetic scanner
+                    <ol>
+                        <li><a href="/magnetic_scanner_design">Design</a></li>
+                        <li><a href="/magnetic_scanner_results">Results</a></li>
+                    </ol>
+                </li>
+                <li>Controlling the instrument
+                    <ol>
+                        <li><a href="/state_sensor_algorithm">State-sensor algorithm </a></li>
+                        <li><a href="/dynamics">Dynamics of the system</a></li>
+                        <!-- <li><a href="/open_loop_response">Open loop response</li> -->
+                        <li><a href="/control">Code architecture and first control</a></li>
+                        <li><a href="/linearising">Linearising the actuators</a></li>
+                    </ol>
+                </li>
+                <li><a href="/comparing">Discussion : Compairing with other setups</a></li>
+                <li><a href="/conclusion">Conclusion and future work</a></li>
+                <li><a href="/website">About this website</a></li>
+            </ol>
+        </div>
+
+    </div>
+<!--     <div class="row column">
+        <ul class="pagination" role="navigation" aria-label="Pagination">
+            <li class="disabled">Previous</li>
+            <li class="current"><span class="show-for-sr">You're on page</span> 1</li>
+            <li><a href="#" aria-label="Page 2">2</a></li>
+            <li><a href="#" aria-label="Page 3">3</a></li>
+            <li><a href="#" aria-label="Page 4">4</a></li>
+            <li class="ellipsis"></li>
+            <li><a href="#" aria-label="Page 12">12</a></li>
+            <li><a href="#" aria-label="Page 13">13</a></li>
+            <li><a href="#" aria-label="Next page">Next</a></li>
+        </ul>
+    </div> -->
+
+
+<script>
+$("#sidebar").clone().prependTo("#mainContainer").attr("id", "sidebarPhone");
+
+
+$("pre").each(function(){
+    var classes = $(this).attr("class").split(" ");
+    for(var i=0; i<classes.length; i++){
+        $(this).children("code").addClass("language-" + classes[i]);
+    }
+    $(this).addClass("line-numbers");
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<link rel="stylesheet" href="css/prism.css">
+<script src="js/prism.js"></script>
+
+
+
+<script src="js/bibcite.js"></script>
+<script>
+    B = new BibCite('public/bibliography.bib', { })
+    B.replace();
+    B.references('.bibliography')
+</script>
+</body>
+</html>
