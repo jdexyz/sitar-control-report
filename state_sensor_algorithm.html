@@ -20,10 +20,10 @@
     <header class="">
         <div class="grid grid-pad">
             <div class="col-11-12">
-                <h1><i><a href="/intro.html">Sitar Control</a></i> <div id="logos"><a href="http://mines-paristech.fr"><img src="img/logo_mines.png"></a> <a href="http://trublion.org"><img id="logo_trublion" src="img/trublion_bandeau.png"></a></div></h1>
+                <h1><i><a href="sitar-control-report/intro.html">Sitar Control</a></i> <div id="logos"><a href="http://mines-paristech.fr"><img src="img/logo_mines.png"></a> <a href="http://trublion.org"><img id="logo_trublion" src="img/trublion_bandeau.png"></a></div></h1>
                 <h3>A research internship at <i>Centre d'Automatique des Systèmes</i>, Mines ParisTech </h3>
                 by Jeremy Dahan, student at Mines ParisTech and member of the Trublion collective
-                <p>This website is my report for my research internship at the CAS where I built a stringed musical instrument on which timbre is controled using electromagnets. A complete description can be found <a href="/intro.html">here</a></p>
+                <p>This website is my report for my research internship at the CAS where I built a stringed musical instrument on which timbre is controled using electromagnets. A complete description can be found <a href="sitar-control-report/intro.html">here</a></p>
             </div>
         </div>
     </header>
@@ -146,7 +146,7 @@ sampleIndex = ((sampleIndex&amp;0b0111) + 1)%M + 0b1000 // = 1110</code></pre>
 <p>Though the gaussian filtering and the low number of modes make the sound less bright, the piano timbre is still very recognizable.</p>
 <p>The fact that the timbre of the piano is recognizable even though the driving amplitudes are smoothed proved that if we could control the amplitude of each mode and make them follow a given trajectory, we would be able to approach existing timbres.</p>
 <p><strong>This experiment lead us to use the <span class="math inline">\(C_n(t)\)</span> as the basic components of our state vector, and it guided us in the choice of our musical control : we decided to make the system follow arbitrary modal amplitude trajectories.</strong></p>
-<p>The <a href="/dynamics.html">next section</a> tries to apply this idea to a simple model to get the dynamics of the system.</p>
+<p>The <a href="sitar-control-report/dynamics.html">next section</a> tries to apply this idea to a simple model to get the dynamics of the system.</p>
 <h2 id="similar-algorithms">Similar algorithms</h2>
 <p>The family of Sliding DFTs regroups many algorithms that try to compute the Fourier coefficients of a signal, often with a certain knowledge of the target frequencies. A critical application was the <em>Dual-tone multi-frequency signaling</em> (DTMF) system that was a telephone communication standard until recently. Active research is conducted on this fields, as SDFT can be used as phase lock mechanisms (including in our case).</p>
 <p>A common algorithm used is the <em>Goertzel algorithm</em>@^goertzel1958algorithm that was refined many times to compensate for its marginal stability and its limitation to signals of frequencies that have a common divisor@^Chicharo1996 . Goertzel uses a second-order IIR filter followed by a first-order FIR filter to get to the Fourier coefficients, using only real-valued multiplications.</p>
@@ -163,35 +163,35 @@ sampleIndex = ((sampleIndex&amp;0b0111) + 1)%M + 0b1000 // = 1110</code></pre>
         </div>
         <div class="col-4-12 columns" id="sidebar">
             <ol>
-                <li><a href="/intro.html">Introduction</a></li>
-                <li><a href="/landscape.html">Landscape of augmented instruments</a></li>
+                <li><a href="sitar-control-report/intro.html">Introduction</a></li>
+                <li><a href="sitar-control-report/landscape.html">Landscape of augmented instruments</a></li>
                 <li>Design choices for the instrument
                     <ol>
-                        <li><a href="/general.html">General geometry</a></li>
-                        <li><a href="/general_actuators.html">Choosing the actuator</a></li>
-                        <li><a href="/choosing_sensors.html">Choosing the sensor</a></li>
-                        <li><a href="/making_sitemp.html">Microcontroller, amplifier and woodworking</a></li>
-                        <li><a href="/summary_design.html">Summary of the design</a></li>
+                        <li><a href="sitar-control-report/general.html">General geometry</a></li>
+                        <li><a href="sitar-control-report/general_actuators.html">Choosing the actuator</a></li>
+                        <li><a href="sitar-control-report/choosing_sensors.html">Choosing the sensor</a></li>
+                        <li><a href="sitar-control-report/making_sitemp.html">Microcontroller, amplifier and woodworking</a></li>
+                        <li><a href="sitar-control-report/summary_design.html">Summary of the design</a></li>
                     </ol>
                 </li>
                 <li>Engineering a magnetic scanner
                     <ol>
-                        <li><a href="/magnetic_scanner_design.html">Design</a></li>
-                        <li><a href="/magnetic_scanner_results.html">Results</a></li>
+                        <li><a href="sitar-control-report/magnetic_scanner_design.html">Design</a></li>
+                        <li><a href="sitar-control-report/magnetic_scanner_results.html">Results</a></li>
                     </ol>
                 </li>
                 <li>Controlling the instrument
                     <ol>
-                        <li><a href="/state_sensor_algorithm.html">State-sensor algorithm </a></li>
-                        <li><a href="/dynamics.html">Dynamics of the system</a></li>
-                        <!-- <li><a href="/open_loop_response.html">Open loop response</li> -->
-                        <li><a href="/control.html">Code architecture and first control</a></li>
-                        <li><a href="/linearising.html">Linearising the actuators</a></li>
+                        <li><a href="sitar-control-report/state_sensor_algorithm.html">State-sensor algorithm </a></li>
+                        <li><a href="sitar-control-report/dynamics.html">Dynamics of the system</a></li>
+                        <!-- <li><a href="sitar-control-report/open_loop_response.html">Open loop response</li> -->
+                        <li><a href="sitar-control-report/control.html">Code architecture and first control</a></li>
+                        <li><a href="sitar-control-report/linearising.html">Linearising the actuators</a></li>
                     </ol>
                 </li>
-                <li><a href="/comparing.html">Discussion : Compairing with other setups</a></li>
-                <li><a href="/conclusion.html">Conclusion and future work</a></li>
-                <li><a href="/website.html">About this website</a></li>
+                <li><a href="sitar-control-report/comparing.html">Discussion : Compairing with other setups</a></li>
+                <li><a href="sitar-control-report/conclusion.html">Conclusion and future work</a></li>
+                <li><a href="sitar-control-report/website.html">About this website</a></li>
             </ol>
         </div>
 
