@@ -20,10 +20,10 @@
     <header class="">
         <div class="grid grid-pad">
             <div class="col-11-12">
-                <h1><i><a href="/intro.html">Sitar Control</a></i> <div id="logos"><a href="http://mines-paristech.fr"><img src="img/logo_mines.png"></a> <a href="http://trublion.org"><img id="logo_trublion" src="img/trublion_bandeau.png"></a></div></h1>
+                <h1><i><a href="intro.html">Sitar Control</a></i> <div id="logos"><a href="http://mines-paristech.fr"><img src="img/logo_mines.png"></a> <a href="http://trublion.org"><img id="logo_trublion" src="img/trublion_bandeau.png"></a></div></h1>
                 <h3>A research internship at <i>Centre d'Automatique des Systèmes</i>, Mines ParisTech </h3>
                 by Jeremy Dahan, student at Mines ParisTech and member of the Trublion collective
-                <p>This website is my report for my research internship at the CAS where I built a stringed musical instrument on which timbre is controled using electromagnets. A complete description can be found <a href="/intro.html">here</a></p>
+                <p>This website is my report for my research internship at the CAS where I built a stringed musical instrument on which timbre is controled using electromagnets. A complete description can be found <a href="intro.html">here</a></p>
             </div>
         </div>
     </header>
@@ -37,7 +37,7 @@
             <div class="blog-post">
 <h1 id="controlling-the-timbre">Controlling the timbre</h1>
 <h2 id="the-phase-lock-system">The phase lock system</h2>
-<p>The output signal sent to the current-output amplifier is a sum of sine waves which amplitudes vary to damp or increase each modal amplitude. To sync the phase for each mode, we simply used the output phase of the Fourier coefficient algorithm described in <a href="/state_sensor_algorithm.html">the state-sensor algorithm page</a>.</p>
+<p>The output signal sent to the current-output amplifier is a sum of sine waves which amplitudes vary to damp or increase each modal amplitude. To sync the phase for each mode, we simply used the output phase of the Fourier coefficient algorithm described in <a href="state_sensor_algorithm.html">the state-sensor algorithm page</a>.</p>
 <p>An important consequence of the assumption we made earlier that all the waves are standing waves is that there is no phase shift between the signal seen at the end and at the middle of the string : there can be a difference of amplitude and a change of sign (ruled by the term <span class="math inline">\(\sin(n\pi x_0/L)\)</span>) but the signal is the same everywhere.</p>
 <p>When the predefined frequency of analysis <span class="math inline">\(\omega_0\)</span> does not exactly match the actual frequency of the string <span class="math inline">\(\omega\)</span>, the output of the state sensor-algorithm outputs <span class="math inline">\(\phi(t)\)</span> so that <span class="math inline">\(\sin\left(\omega_0t + \phi(t)\right) = \sin(\omega t + \psi)\)</span>. This property insured us that we would always drive the system at the right frequency.</p>
 <p>However robust, the output <span class="math inline">\(\phi(t)\)</span> was still noisy and we chose to filter the driving signals <span class="math inline">\(\sin\left(\omega_{0,n}t + \phi_n(t)\right)\)</span>, with a moving average.</p>
@@ -150,7 +150,7 @@ audioWrite(context, n, 1, outputCommand); // Right Channel
 </audio>
 <p>Adding a derivative term to the control should stop this oscillation.</p>
 <p>This is unfortunately (and frustratingly) the last control experiment we had the time to conduct before writing this report.</p>
-<p>However, we tried, as a proof of concept, to use the results of the magnetic scans to linearise the effect of the actuators in <a href="/linearising.html">the next page</a>.</p>
+<p>However, we tried, as a proof of concept, to use the results of the magnetic scans to linearise the effect of the actuators in <a href="linearising.html">the next page</a>.</p>
 
 <div class="bibliography"></div>
 
@@ -159,35 +159,35 @@ audioWrite(context, n, 1, outputCommand); // Right Channel
         </div>
         <div class="col-4-12 columns" id="sidebar">
             <ol>
-                <li><a href="/intro.html">Introduction</a></li>
-                <li><a href="/landscape.html">Landscape of augmented instruments</a></li>
+                <li><a href="intro.html">Introduction</a></li>
+                <li><a href="landscape.html">Landscape of augmented instruments</a></li>
                 <li>Design choices for the instrument
                     <ol>
-                        <li><a href="/general.html">General geometry</a></li>
-                        <li><a href="/general_actuators.html">Choosing the actuator</a></li>
-                        <li><a href="/choosing_sensors.html">Choosing the sensor</a></li>
-                        <li><a href="/making_sitemp.html">Microcontroller, amplifier and woodworking</a></li>
-                        <li><a href="/summary_design.html">Summary of the design</a></li>
+                        <li><a href="general.html">General geometry</a></li>
+                        <li><a href="general_actuators.html">Choosing the actuator</a></li>
+                        <li><a href="choosing_sensors.html">Choosing the sensor</a></li>
+                        <li><a href="making_sitemp.html">Microcontroller, amplifier and woodworking</a></li>
+                        <li><a href="summary_design.html">Summary of the design</a></li>
                     </ol>
                 </li>
                 <li>Engineering a magnetic scanner
                     <ol>
-                        <li><a href="/magnetic_scanner_design.html">Design</a></li>
-                        <li><a href="/magnetic_scanner_results.html">Results</a></li>
+                        <li><a href="magnetic_scanner_design.html">Design</a></li>
+                        <li><a href="magnetic_scanner_results.html">Results</a></li>
                     </ol>
                 </li>
                 <li>Controlling the instrument
                     <ol>
-                        <li><a href="/state_sensor_algorithm.html">State-sensor algorithm </a></li>
-                        <li><a href="/dynamics.html">Dynamics of the system</a></li>
-                        <!-- <li><a href="/open_loop_response.html">Open loop response</li> -->
-                        <li><a href="/control.html">Code architecture and first control</a></li>
-                        <li><a href="/linearising.html">Linearising the actuators</a></li>
+                        <li><a href="state_sensor_algorithm.html">State-sensor algorithm </a></li>
+                        <li><a href="dynamics.html">Dynamics of the system</a></li>
+                        <!-- <li><a href="open_loop_response.html">Open loop response</li> -->
+                        <li><a href="control.html">Code architecture and first control</a></li>
+                        <li><a href="linearising.html">Linearising the actuators</a></li>
                     </ol>
                 </li>
-                <li><a href="/comparing.html">Discussion : Compairing with other setups</a></li>
-                <li><a href="/conclusion.html">Conclusion and future work</a></li>
-                <li><a href="/website.html">About this website</a></li>
+                <li><a href="comparing.html">Discussion : Compairing with other setups</a></li>
+                <li><a href="conclusion.html">Conclusion and future work</a></li>
+                <li><a href="website.html">About this website</a></li>
             </ol>
         </div>
 
