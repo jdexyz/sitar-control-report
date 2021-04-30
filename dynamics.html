@@ -66,7 +66,7 @@
 <p>The simulations of cylindrical permanent magnets and the magnetic scans are consistent with a simplification of the force of the type :</p>
 <p><span class="math display">\[d(x) =  \bigg( \begin{matrix}  0 \text{ if } x \notin [x_0 -\frac{\delta x}{2},x_0 +\frac{\delta x}{2}] \\ \frac{d_{max}}{(\frac{\delta x}{2})^2}(x-(x_0 -\frac{\delta x}{2}))(x - (x_0 +\frac{\delta x}{2})) \text{ otherwise}\end{matrix}\]</span>.</p>
 <div class="figure">
-<img src="/img/force_aimant.svg" alt="Proposed simplification of the profile of the force exerted by the electromagnet" />
+<img src="img/force_aimant.svg" alt="Proposed simplification of the profile of the force exerted by the electromagnet" />
 <p class="caption">Proposed simplification of the profile of the force exerted by the electromagnet</p>
 </div>
 <p>This definition is that of a parabola centered around <span class="math inline">\(x_0\)</span>, with a max height of <span class="math inline">\(d_{max}\)</span> and a distance between its roots of <span class="math inline">\(\delta x\)</span>. The function is zero outside of <span class="math inline">\([x_0 -\frac{\delta x}{2},x_0 +\frac{\delta x}{2}]\)</span>, hence out of the bell region.</p>
@@ -75,13 +75,13 @@
 <p>But for small actuators, this result is close to the one we would get from the single point model : <span class="math inline">\(k_n \approx c&#39; \sin(\alpha_n x_0)\)</span>. We found experimentally that both predictions were far from actual amplitude data : the final amplitude values of modes tested in open loop had very different ratios than xhat the formula predicted.</p>
 <p>It is important to stress that we are interested in the dynamics of the <strong>amplitude of each mode</strong> (<span class="math inline">\(C(t)\)</span> as introduced in the <a href="state_sensor_algorithm.html">state sensor algorithm page</a>), not just the state of its associated oscillator. For a Heaviside excitation at the resonant frequency, i.e. <span class="math inline">\(s(t) = u_0(t)A \sin(\omega_{0,n} t)\)</span> (where <span class="math inline">\(u_0(t&lt;0)=0\)</span> and <span class="math inline">\(u_0(t\geq0)=1\)</span>), the system behaves like a first order system (regarding the amplitude) : the final state is reached with an exponential decay profile. The time constant is <span class="math inline">\(2/\lambda\)</span>, like in the homogeneous equation. We can thus hypothesise that the system behaves like a first order system for more complex excitations, if exactly driven at its resonance frequency.</p>
 <div class="figure">
-<img src="/img/img478.png" alt="Transient of a damped oscillator to a pure sine excitation at the resonant frequency, from R. Fitzpatrick website" />
+<img src="img/img478.png" alt="Transient of a damped oscillator to a pure sine excitation at the resonant frequency, from R. Fitzpatrick website" />
 <p class="caption">Transient of a damped oscillator to a pure sine excitation at the resonant frequency, from <a href="https://farside.ph.utexas.edu/teaching/315/Waveshtml/node15.html">R. Fitzpatrick website</a></p>
 </div>
 <p>Except in the simple case of the undamped string, we were unable to analytically compute a simple expression for the amplitude of the transient response when the frequency is not exactly <span class="math inline">\(\omega_{0,n}\)</span> (even with the help of <em>Mathematica</em>). We also had trouble finding literature on the subject (and would welcome any documentation sent to us).</p>
 <p>We expected beatings similar to a second order response, but we came to the conclusion that we needed experimental data to continue.</p>
 <div class="figure">
-<img src="/img/img500.png" alt="Transient of a damped oscillator to a pure sine excitation off the resonant frequency, from R. Fitzpatrick website" />
+<img src="img/img500.png" alt="Transient of a damped oscillator to a pure sine excitation off the resonant frequency, from R. Fitzpatrick website" />
 <p class="caption">Transient of a damped oscillator to a pure sine excitation off the resonant frequency, from <a href="https://farside.ph.utexas.edu/teaching/315/Waveshtml/node15.html">R. Fitzpatrick website</a></p>
 </div>
 <h3 id="testing-the-simple-model">Testing the simple model</h3>
@@ -93,17 +93,17 @@
 <p>The actuator was placed at 120mm from the sensor (the string has a length of 700mm).</p>
 <p>The below figure shows the system response to a <code>0.5</code> step input for mode 1.</p>
 <div class="figure">
-<img src="/img/mode1_0.5.png" alt="Open loop response for a 0.5 step input for mode 1" />
+<img src="img/mode1_0.5.png" alt="Open loop response for a 0.5 step input for mode 1" />
 <p class="caption">Open loop response for a 0.5 step input for mode 1</p>
 </div>
 <p>The decay of the beatings has an exponential profile, but the beginning of the transient is difficult to analyse. The same observation can be made on the open loop response to a mode 2 step (though the decay is too slow to be exponential):</p>
 <div class="figure">
-<img src="/img/open_loop_0.5_mode2.png" alt="Open loop response for a 0.5 step input for mode 2" />
+<img src="img/open_loop_0.5_mode2.png" alt="Open loop response for a 0.5 step input for mode 2" />
 <p class="caption">Open loop response for a 0.5 step input for mode 2</p>
 </div>
 <p>However, the beatings become more complex for mode 3 onward : <em>the beatings start to have a beating oscillation</em>.</p>
 <div class="figure">
-<img src="/img/mode3_open_loop.png" alt="Open loop response for a 0.5 step input for mode 3" />
+<img src="img/mode3_open_loop.png" alt="Open loop response for a 0.5 step input for mode 3" />
 <p class="caption">Open loop response for a 0.5 step input for mode 3</p>
 </div>
 <p>The modes are also more coupled than anticipated, and the beatings change accordingly. We tried to use the system identification toolbox in Matlab to get a numerical model that could explain these responses, but even with high order models, we could not get better than a 70% fit, and most often the begining of the transient was fairly off.</p>

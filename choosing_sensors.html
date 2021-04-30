@@ -51,14 +51,14 @@
 <p>Guitar pickups consist of a cylindrical magnet around which is wound a coil of very thin insulated copper wire. For magnetic actuators, the wire diameter is close to 0.3mm (AWG28) whereas a pickup will use 0.05mm diameter wire (AWG44). Their resistance is therefore very different: actuators have a resistance comparable to that of speakers (between <span class="math inline">\(8\Omega\)</span> and <span class="math inline">\(32\Omega\)</span>) while sensors are usually in the <span class="math inline">\(\text{k}\Omega\)</span> range, with several thousand turns.</p>
 <p>The permanent magnet induces a magnetic moment in the string above it, and the movement of this moment causes a change in the magnetic flux inside the coil, thus producing a measurable voltage.</p>
 <div class="figure">
-<img src="/img/sey-11201-03-rwrp.jpg" alt="A typical guitar pickup (Seymour Duncan, from the Pitbull Audio website)" />
+<img src="img/sey-11201-03-rwrp.jpg" alt="A typical guitar pickup (Seymour Duncan, from the Pitbull Audio website)" />
 <p class="caption">A typical guitar pickup (Seymour Duncan, from <a href="https://www.pitbullaudio.com/seymour-duncan-11201-03-rwrp-ssl-2-vintage-flat-for-strat-reverse-wound-reverse-polarity-guitar-pickup.html">the Pitbull Audio website</a>)</p>
 </div>
 <p>Many analytical models for the magnetic pickups exist (@@Lemarquand2007, @@Horton2009), and they show that the pickup mainly senses the vertical <em>velocity</em> of the string. It exhibits strong distortion, especially when horizontal displacement is also present. This linearity has been confirmed experiementally using high speed linear cameras for reference (@@Mustonen2014).</p>
 <p>In electric guitar, this distortion gives a sought-after warm characteristic sound, but for a control system, this greatly complexifies the design of the observer.</p>
 <p>Futhermore, since the actuator emits a very strong magnetic field, additional processing is required to suppress the inevitable crosstalk.</p>
 <div class="figure">
-<img src="/img/IMG_3831%20copy.JPG" alt="Custom individual magnetic pickup" />
+<img src="img/IMG_3831%20copy.JPG" alt="Custom individual magnetic pickup" />
 <p class="caption">Custom individual magnetic pickup</p>
 </div>
 <blockquote>
@@ -69,26 +69,26 @@
 <p>Optical systems are inherently difficult to build, as the transfer function greatly depends on the shape of the emitter, of the linearity of the receiver, the shape of its sensitive area, and the shape of the string. Futhermore, typical optical sensors have a bandwidth limited to 1kHz, insufficient for audio@^Berdahl2008a.</p>
 <p>These sensors are still the subject of research to improve their linearity @^Leroy2006.</p>
 <div class="figure">
-<img src="/img/JRC_7729-Edit23.jpg" alt="Close up on a LightWave Systems optical pickup, from the Wilcox Guitars website" />
+<img src="img/JRC_7729-Edit23.jpg" alt="Close up on a LightWave Systems optical pickup, from the Wilcox Guitars website" />
 <p class="caption">Close up on a LightWave Systems optical pickup, from <a href="https://willcoxguitars.com/the-lightwave-optical-pickup-system/">the Wilcox Guitars website</a></p>
 </div>
 <h3 id="the-magneto-resistive-pickup">The magneto-resistive pickup</h3>
 <p>Magneto-resistive devices are very similar to Hall-effect sensors, but they are much more sensistive to magnetic field variations.</p>
 <p>Proposed in this report, magneto-resistive pickups are a seducing alternative to traditional inductive pickups. However, they do suffer from the same crosstalk issue with the actuator.</p>
 <div class="figure">
-<img src="/img/GMR_Lenssen.png" alt="A Giant MagnetoResistive pickup prototype, from @@Lenssen2002" />
+<img src="img/GMR_Lenssen.png" alt="A Giant MagnetoResistive pickup prototype, from @@Lenssen2002" />
 <p class="caption">A Giant MagnetoResistive pickup prototype, from @@Lenssen2002</p>
 </div>
 <p>@@Lenssen2002 and @@Atteya2016 have tried adapting these sensors to string instruments, but no commercial pickups exists as of 2016.</p>
 <h3 id="the-piezoelectric-pickup">The piezoelectric pickup</h3>
 <p>Piezoelectric pickups (also called contact microphones) produce a voltage proportional to the force exerted on their surface. They exhibit good linearity properties and are not subjected to direct noise from the actuators.</p>
 <div class="figure">
-<img src="/img/Piezoelectric_pickup1.jpg" alt="A typical piezo pickup installed on a classical guitar, from Wikipedia" />
+<img src="img/Piezoelectric_pickup1.jpg" alt="A typical piezo pickup installed on a classical guitar, from Wikipedia" />
 <p class="caption">A typical piezo pickup installed on a classical guitar, from <a href="https://commons.wikimedia.org/wiki/File:Piezoelectric_pickup1.jpg">Wikipedia</a></p>
 </div>
 <p>Since we aim at having a multi-string instrument with limited crosstalk between the strings, we chose a Graphtech piezo element embedded in an ABM bass single bridge. These pickups are usually installed in high-end custom bass guitars with hexaphonic output.</p>
 <div class="figure">
-<img src="/img/pickup.jpg" alt="The selected piezo pickup" />
+<img src="img/pickup.jpg" alt="The selected piezo pickup" />
 <p class="caption">The selected piezo pickup</p>
 </div>
 <p>Strangely, Graphtech pickups come with a unshielded output wires. This is especially surprising since the high impedance of these pickups means the non amplified signal is greatly susceptible to mains hum, and tests showed that it was indeed very audible. We solved this issue by thouroughly shielded the output cable, and by connecting all grounds in the circuit with thick cables.</p>

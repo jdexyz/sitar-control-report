@@ -73,13 +73,13 @@ k = (k+1)%M</code></pre>
 <p>The method proposed here uses a different summing scheme that eliminates the summation error issue while keeping the computational cost at <span class="math inline">\(N\log(M)\)</span> where <span class="math inline">\(M\)</span> is the sample size and <span class="math inline">\(N\)</span> the number of modes of interest :</p>
 <p>We first build a binary tree of the previous sums of <span class="math inline">\(s_{n,i} e_n^i\)</span>, with the <span class="math inline">\(s_{n,i} e_n^i\)</span> at the end of the tree. Each upper node represents the sum of the two nodes below it. When a new input is added, it replaces the oldest one in the buffer, and the corresponding branch (from the top node to this node) is recalculated. This approach thus requires <span class="math inline">\(\log(M)\)</span> complex additions, and one complex multiplication per cycle and mode of interest.</p>
 <div class="figure">
-<img src="/img/Summation_scheme.svg" alt="The proposed summation scheme tree" />
+<img src="img/Summation_scheme.svg" alt="The proposed summation scheme tree" />
 <p class="caption">The proposed summation scheme tree</p>
 </div>
 <p>On this graph, which represents a situation with a sample size of 8, the <span class="math inline">\(a_i\)</span> represent the signal buffer values, the <span class="math inline">\(b_i\)</span> represent the sums of the pairs of <span class="math inline">\(a_i\)</span>, and so on.</p>
 <p>When a new element is added to the buffer (and replaces the old value), for instance <span class="math inline">\(a_6\)</span>, we have to recalculate <span class="math inline">\(b_3 = a_5 + a_6\)</span>, but also <span class="math inline">\(c_2 = b_3 + b_4\)</span>, and finally <span class="math inline">\(d_1 = c_1 + c_2\)</span>.</p>
 <div class="figure">
-<img src="/img/Summation_scheme_new_element.svg" alt="The new summations need for updating the tree sum" />
+<img src="img/Summation_scheme_new_element.svg" alt="The new summations need for updating the tree sum" />
 <p class="caption">The new summations need for updating the tree sum</p>
 </div>
 <p>This graph can easily be stored in an array, where the numbering is done by counting the elements from top to bottom, left to right. The algorithm then uses bitwise operation to move up in the tree : in pseudo code</p>
@@ -113,7 +113,7 @@ sampleIndex = ((sampleIndex&amp;0b0111) + 1)%M + 0b1000 // = 1110</code></pre>
 <p><span class="math display">\[ C_0(t) \approx \alpha\left( 1 + \frac{2\beta}{T_0\alpha}\sin(w_hT_0/2)\left(\frac{\cos((\omega_h-\omega_0)(t-T_0/2)}{\omega_h-\omega_0} + \frac{\cos((\omega_h+\omega_0)(t-T_0/2)}{\omega_h+\omega_0} \right) \right)\]</span></p>
 <p>Hence we can expect the mode 1 amplitude to be polluted by signals at frequencies <span class="math inline">\(|f_{hum} + f_0|\)</span> and <span class="math inline">\(|f_{hum} - f_0|\)</span>, the latter beging the strongest if the signal and hum frequencies are close.</p>
 <div class="figure">
-<img src="/img/Hum_FFT.png" alt="FFT of the amplitude ouput of a signal polluted by mains hum" />
+<img src="img/Hum_FFT.png" alt="FFT of the amplitude ouput of a signal polluted by mains hum" />
 <p class="caption">FFT of the amplitude ouput of a signal polluted by mains hum</p>
 </div>
 <p>The above graph is an FFT of the amplitude output of our algorithm running at 44.1kHz, for a 70Hz signal of amplitude 1, polluted by a 50Hz hum of amplitude 0.1. The peaks are located at 20Hz and 120Hz, with a ratio of amplitude consistent with the above formula: <span class="math inline">\(117/722 \approx 1/6 \approx \frac{1/(70+50)}{1/(70-50)}\)</span>.</p>
@@ -125,7 +125,7 @@ sampleIndex = ((sampleIndex&amp;0b0111) + 1)%M + 0b1000 // = 1110</code></pre>
 <p>Having now an algorithm to study the change in amplitude of the different harmonics, we applied it to analyse the timbre of known instruments, such as the piano or the guitar.</p>
 <p>Below are the sound sample and the graph of the timbre of an A4 (440Hz) piano note at 44100Hz, recorded on a Steinway grand piano using a Neumann KM 84 microphone (courtesy of <a href="https://www.freesound.org/people/feelander/sounds/316004/">the University of Iowa Electronic Music Studio</a>).</p>
 <div class="figure">
-<img src="/img/decomp_timbre.png" alt="Output of the analysis algorithm on a A4 piano sample" />
+<img src="img/decomp_timbre.png" alt="Output of the analysis algorithm on a A4 piano sample" />
 <p class="caption">Output of the analysis algorithm on a A4 piano sample</p>
 </div>
 <p>The graphs are consistent with the acoustic perception of the harmonics modulation and the output of regular FFTs : below is the output of the FFT produced by <a href="https://www.xivero.com/musicscope/">MusicScope</a>, with the sound sample.</p>

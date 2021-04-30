@@ -43,11 +43,11 @@
 <p>In 2014, we was given a <em>PrintrBot</em> 3D printer (a computer controlled machine that can move freely in a 3D space), on which we attached three Hall-effect sensors and an Arduino microcontroller for data logging. Hall-effect sensors produce a voltage proportional to the magnetic flux running through their surface; three small orthogonal sensors are enough to reconstruct the magnetic flux density vector <span class="math inline">\(\overrightarrow{B\,}\)</span> at a given point.</p>
 <p>The result of this modification was a surprisingly effective magnetic scanner, given the makeshift quality of the sensors assembly and the low resolution of the Arduino ADC.</p>
 <div class="figure">
-<img src="/img/IMG_0032(1).jpg" alt="The first version of the magnetic scanner" />
+<img src="img/IMG_0032(1).jpg" alt="The first version of the magnetic scanner" />
 <p class="caption">The first version of the magnetic scanner</p>
 </div>
 <div class="figure">
-<img src="/img/Capteur.svg" alt="The Hall-effect sensors assembly" />
+<img src="img/Capteur.svg" alt="The Hall-effect sensors assembly" />
 <p class="caption">The Hall-effect sensors assembly</p>
 </div>
 <p>A python script was written to control the printer and collect data from the Arduino.</p>
@@ -70,13 +70,13 @@
 <source src="media/SphinxMediumNoShieldZ.webm" type="video/webm">
 </video>
 <div class="figure">
-<img src="/img/IMG_0034.jpg" alt="The scanned loudspeaker" />
+<img src="img/IMG_0034.jpg" alt="The scanned loudspeaker" />
 <p class="caption">The scanned loudspeaker</p>
 </div>
 <p>To better vizualise the mapped magnetic fields, we wanted to add a 3D image of the scanned object.</p>
 <p>We added a rudimentary 3D scanner, using a tilted laser and a USB camera. The printer would sweep the surface of a plane while the camera feed was analysed by <code>OpenCV</code> to find the bright spot of the laser. The coordinates of the spot were mapped to height values using simple trigonometry and a 3D map was reconstructed. The results showed ressemblance to the scanned object but were too sensitive to changes in reflectivity of the surface of the object. Moreover, tilting the camera or the laser means a shadow exists in the resulting image.</p>
 <div class="figure">
-<img src="/img/Scan_Z-axis.png" alt="The height map scan of the scanned loudspeaker, with its shadow" />
+<img src="img/Scan_Z-axis.png" alt="The height map scan of the scanned loudspeaker, with its shadow" />
 <p class="caption">The height map scan of the scanned loudspeaker, with its shadow</p>
 </div>
 <h2 id="the-new-version">The new version</h2>
@@ -86,7 +86,7 @@
 <p>The BeagleBone emits a local webserver (using <code>Flask</code> and <code>SocketIO</code>) that serves as an interface for controlling the scanner.</p>
 <p>The BeagleBone and both sensors are fixed onto a custom support part, with brass screws.</p>
 <div class="figure">
-<img src="/img/IMG_3382%20copy.JPG" alt="The new scanner, attached to the CNC mill" />
+<img src="img/IMG_3382%20copy.JPG" alt="The new scanner, attached to the CNC mill" />
 <p class="caption">The new scanner, attached to the CNC mill</p>
 </div>
 <h4 id="mechanical-parts">Mechanical parts</h4>
@@ -100,7 +100,7 @@
 <source src="media/milling.webm" type="video/webm">
 </video>
 <div class="figure">
-<img src="/img/scanner_photos-01.jpg" alt="The machined Delrin parts (without the new brass screws)" />
+<img src="img/scanner_photos-01.jpg" alt="The machined Delrin parts (without the new brass screws)" />
 <p class="caption">The machined Delrin parts (without the new brass screws)</p>
 </div>
 <h4 id="choosing-the-magnetic-sensor">Choosing the magnetic sensor</h4>
@@ -125,7 +125,7 @@
 <p>The <code>TLV493D</code> is used for now, as the <a href="http://www.mouser.fr/new/Infineon-Technologies/infineon-tlv493d-a1b6-2-go-kit/">evaluation board</a> was fast to work with and was already in the right shape for a probe application. Other sensors from <em>Melexis</em> (the <code>MLX90363</code> and <code>MLX90393</code>) were also ordered for a future upgrade of this scanner (custom PCBs are required as all these sensors are surface mount components).</p>
 <p>The <code>TLV493D</code> is an integrated, 12-bit resolution 3D Hall-effect sensor with temperature compensation. It communicates via <code>I2C</code> and measures fields up to <span class="math inline">\(\pm 130\text{mT}\)</span>. We used the evaluation board that has accessible pins. The on-board microcontroller was first used to validate that the absolute range of the sensor was suitable for our magnets. We then disconnected the sensor pins and soldered headers to connect the BeagleBone.</p>
 <div class="figure">
-<img src="/img/mag_sensor.jpg" alt="The slightly modified evaluation board for the TLV493D magnetic sensor" />
+<img src="img/mag_sensor.jpg" alt="The slightly modified evaluation board for the TLV493D magnetic sensor" />
 <p class="caption">The slightly modified evaluation board for the <code>TLV493D</code> magnetic sensor</p>
 </div>
 <h4 id="choosing-the-proximity-sensor">Choosing the proximity sensor</h4>
@@ -143,7 +143,7 @@
 <h4 id="a-small-webserver">A small webserver</h4>
 <p>The scanner is autonomous, but can be controlled via a webpage accessible on the local network (the BeagleBone Wireless has to be configured to connect to the local network). The webserver uses the <code>Flask</code> micro-server environment, a simple to use framework written in Python. A <code>SocketIO</code> realtime connection is established with the client and a webpage displays the graphs of the incoming data (magnetic and distance outputs, but also the machine state) in realtime.</p>
 <div class="figure">
-<img src="/img/mag_server.png" alt="The webpage of the server emitted by the BeagleBone" />
+<img src="img/mag_server.png" alt="The webpage of the server emitted by the BeagleBone" />
 <p class="caption">The webpage of the server emitted by the BeagleBone</p>
 </div>
 <h4 id="a-simple-3d-vector-field-viewer-for-web-browsers">A simple 3D Vector field viewer for web browsers</h4>
@@ -152,7 +152,7 @@
 <p>The viewer creates a large array of 3D lines and adds a black point at the end. This being a (slightly) abusive use of the library, the startup is usually very slow for large input files (about 20s on a recent laptop for 5000 vectors).</p>
 </blockquote>
 <div class="figure">
-<img src="/img/mag_viewer.png" alt="A screenshot of the 3D viewer introduced above" />
+<img src="img/mag_viewer.png" alt="A screenshot of the 3D viewer introduced above" />
 <p class="caption">A screenshot of the 3D viewer introduced above</p>
 </div>
 <h2 id="other-similar-magnetic-scanners">Other similar magnetic scanners</h2>

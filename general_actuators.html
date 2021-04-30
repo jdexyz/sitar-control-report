@@ -104,11 +104,11 @@
 <p>Another approach used is to attach a permanent magnet to the electro-magnet assembly. This has the advantage of reducing the current injected (hence reduce the dissipated power), while also achieving intense fields, and it simplifies the amplifier circuit.</p>
 <p>This approach is justified by the fact that the magnetic field created by the current running in the coil can be seen as a rotating surface current in the coil inner cylinder, and the same model describes permanent cylindrical magnets@^Ravaud2010. Since the steel core will canalises the magnetic field lines of the permanent magnet below it, we can expect the steel core to be magnetised like a permanent magnet (but with the added benefit of having a high <span class="math inline">\(\mu_r\)</span>). FEMM Simulations proved this assumption to be reasonable for the typical fields used here : for the geometry of the electromagnet proposed by McPherson (see next paragraph), the fields <em>above the electromagnet</em>, generated either by injecting a current or adding a stack of neodymium magnets at the back, have a very similar decay profile.</p>
 <div class="figure">
-<img src="/img/decay.png" alt="FEMM simulations for the E-77-88 with a permanent neodymium magnet at the back (left) and with current flowing through the coil (right)" />
+<img src="img/decay.png" alt="FEMM simulations for the E-77-88 with a permanent neodymium magnet at the back (left) and with current flowing through the coil (right)" />
 <p class="caption">FEMM simulations for the E-77-88 with a permanent neodymium magnet at the back (left) and with current flowing through the coil (right)</p>
 </div>
 <div class="figure">
-<img src="/img/Magnetic_decay.png" alt="Normalized decay profiles of the fields shown in the above simulations" />
+<img src="img/Magnetic_decay.png" alt="Normalized decay profiles of the fields shown in the above simulations" />
 <p class="caption">Normalized decay profiles of the fields shown in the above simulations</p>
 </div>
 <p>Hence we can expect the addition of permanent magnets at the back of the electromagnet to be similar to a DC current offset in the coil. This is the approach we used for this instrument : below the electromagnets are strong neodymium magnets that generate the necessary offset.</p>
@@ -116,17 +116,17 @@
 <p>The MRP design uses a model of electromagnet that has become a reference among augmented instruments : the <em>E-77-82</em> from <a href="http://www.electromechanicsonline.com/product.asp?pid=692"><code>ElectroMechanicsOnline.com</code></a>. It is a cylinder with a diameter of 20.8mm and a height of 19.6mm, with a steel core (diameter 7mm) and a steel outer casing (thickness 0.5mm). It has a resistance of around <span class="math inline">\(5.5\Omega\)</span> and an inductance of 19mH @^McPherson2012 , and approximately 1000 turns.</p>
 <p>We added three 3mm thick neodymium magnets (grade N42, diameter 18mm) at the back, and quickly milled little wood pieces that would hold the magnet at a reasonable distance from the string (6mm). This distance was chosen after exciting the string with a sine at its resonance frequency, and changing the height to get a good amplitude of oscillation without having the string hitting the actuator.</p>
 <div class="figure">
-<img src="/img/IMG_3388%20copy.JPG" alt="The E-77-82 electromagnet with neodymium permanent magnets" />
+<img src="img/IMG_3388%20copy.JPG" alt="The E-77-82 electromagnet with neodymium permanent magnets" />
 <p class="caption">The E-77-82 electromagnet with neodymium permanent magnets</p>
 </div>
 <div class="figure">
-<img src="/img/IMG_3389%20copy.JPG" alt="The E-77-82 installed beneath the string with its custom support part" />
+<img src="img/IMG_3389%20copy.JPG" alt="The E-77-82 installed beneath the string with its custom support part" />
 <p class="caption">The E-77-82 installed beneath the string with its custom support part</p>
 </div>
 <p>For the geometry of this electromagnet and an amplifier with <span class="math inline">\(I_0 = 1A\)</span> and <span class="math inline">\(U_0 = 10V\)</span>, the optimisation of the diameter of the wire gives <span class="math inline">\(d_{wire} = 0.40 \text{mm}\)</span> or in the American gauge system AWG26, which is close to the AWG28 that McPherson recommends . But since the expression uses a 4th-root, and since this optimisation neglects inductance, we mostly want the resistance to be in the range of <span class="math inline">\(4\Omega\)</span> to <span class="math inline">\(15\Omega\)</span>, adapted to speaker amplifiers (typical expected impedance <span class="math inline">\(8\Omega\)</span>).</p>
 <p>These electromagnets being relatively expensive and made within a high DC resistance tolerance, we tried to find a more affordable alternative. We found that <em>Wuxue Wen Fang Electric Co Ltd</em> makes electromagnets with similar characteristics, at a much lower price. These magnets are sold on <code>ebay.com</code> through various Chinese sellers. They seem to always have &quot;0.8A 5V&quot; in their listed name, but will call them using the printed name <em>WF-P25/20</em>. They have an outside diameter of 25mm and a height of 20mm, a 10mm diameter steel core, and a typical resistance of <span class="math inline">\(7.0\Omega\)</span>.</p>
 <div class="figure">
-<img src="/img/IMG_3823%20copy.JPG" alt="The WF-P25/20 electromagnet" />
+<img src="img/IMG_3823%20copy.JPG" alt="The WF-P25/20 electromagnet" />
 <p class="caption">The WF-P25/20 electromagnet</p>
 </div>
 <blockquote>
